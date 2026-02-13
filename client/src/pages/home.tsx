@@ -7,10 +7,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Check, Heart, MapPin, Music, Star, Users } from "lucide-react";
+import { Check, Heart, MapPin, MessageCircle, Music, Star, Users } from "lucide-react";
 
 // Imports from attached assets
-import logoImage from "@assets/O_ballet_do_seu_jeito_-_1_1770953803091.png";
 import teacherImage from "@assets/527443881_17997662411802896_9044380676725333149_n_1770953559512.jpg";
 
 const WHATSAPP_NUMBER = "5521968802915";
@@ -38,23 +37,31 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-background selection:bg-pink-100">
+      {/* Floating WhatsApp Button */}
+      <a
+        href={WHATSAPP_LINK}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20BA5A] text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 group"
+        aria-label="Falar no WhatsApp"
+      >
+        <img src="/whatsapp.png" alt="WhatsApp" className="w-7 h-7" />
+        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+          Fale conosco!
+        </span>
+      </a>
       {/* Navigation / Header */}
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-pink-100/50">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img 
-              src={logoImage} 
-              alt="Ballet Ana Mucelin Logo" 
-              className="h-12 w-auto invert grayscale brightness-0" 
-              style={{ filter: "brightness(0.2) sepia(1) hue-rotate(300deg) saturate(0.5)" }} // Tinting logo slightly dark pink if it's white with transparent bg
+            <img
+              src="/favicon.png"
+              alt="Ballet Ana Mucelin Logo"
+              className="h-16 w-auto"
             />
-            {/* Fallback text if logo doesn't load clearly or for SEO */}
-            <span className="font-serif text-xl tracking-wide font-medium text-foreground hidden md:block">
-              Ballet Ana Mucelin
-            </span>
           </div>
-          <Button 
-            asChild 
+          <Button
+            asChild
             className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 shadow-lg shadow-pink-200/50 transition-all hover:scale-105"
           >
             <a href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
@@ -75,7 +82,7 @@ export default function Home() {
 
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div 
+            <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
@@ -89,7 +96,7 @@ export default function Home() {
                   Descubra a <span className="text-primary italic">leveza</span> de dançar.
                 </h1>
               </motion.div>
-              
+
               <motion.div variants={itemVariants}>
                 <p className="text-lg text-muted-foreground leading-relaxed max-w-md mx-auto md:mx-0">
                   Respeitamos todos os corpos, idades e ritmos. Uma abordagem personalizada pensada especialmente para sua história com a dança.
@@ -102,13 +109,21 @@ export default function Home() {
                     Começar Agora
                   </a>
                 </Button>
-                <Button variant="outline" size="lg" className="rounded-full text-lg h-14 px-8 border-pink-200 text-pink-700 hover:bg-pink-50 hover:text-pink-800" asChild>
-                  <a href="#modalidades">
-                    Conhecer Modalidades
-                  </a>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="rounded-full text-lg h-14 px-8 border-pink-200 text-pink-700 hover:bg-pink-50 hover:text-pink-800"
+                  onClick={() => {
+                    const element = document.getElementById('modalidades');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                >
+                  Conhecer Modalidades
                 </Button>
               </motion.div>
-              
+
               <motion.div variants={itemVariants} className="pt-4 flex items-center justify-center md:justify-start gap-2 text-sm text-muted-foreground">
                 <Star className="w-4 h-4 text-primary fill-primary" />
                 <Star className="w-4 h-4 text-primary fill-primary" />
@@ -119,7 +134,7 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -128,13 +143,13 @@ export default function Home() {
               <div className="relative aspect-[3/4] md:aspect-square max-w-md mx-auto">
                 <div className="absolute inset-0 bg-pink-200 rounded-t-[10rem] rounded-b-3xl rotate-3 opacity-50" />
                 <div className="absolute inset-0 bg-white rounded-t-[10rem] rounded-b-3xl overflow-hidden shadow-2xl border-4 border-white">
-                  <img 
-                    src={teacherImage} 
-                    alt="Professora Ana Mucelin" 
+                  <img
+                    src={teacherImage}
+                    alt="Professora Ana Mucelin"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                
+
                 {/* Floating Badge */}
                 <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-pink-50 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500 fill-mode-forwards opacity-0">
                   <div className="bg-pink-50 p-2 rounded-full">
@@ -176,7 +191,7 @@ export default function Home() {
             </Card>
 
             <Card className="border-none shadow-lg shadow-pink-100/50 bg-white hover:translate-y-[-5px] transition-transform duration-300 relative overflow-hidden">
-               <div className="absolute top-0 w-full h-1 bg-primary" />
+              <div className="absolute top-0 w-full h-1 bg-primary" />
               <CardContent className="pt-8 pb-8 px-6 text-center space-y-4">
                 <div className="w-16 h-16 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-4 text-primary">
                   <Heart className="w-8 h-8" />
@@ -214,7 +229,7 @@ export default function Home() {
               <p className="text-lg text-muted-foreground">
                 Oferecemos opções para todas as fases da vida, sempre com acompanhamento próximo e cuidadoso.
               </p>
-              
+
               <ul className="space-y-4 mt-8">
                 {[
                   "Baby Class (Iniciação lúdica)",
@@ -224,7 +239,7 @@ export default function Home() {
                   "Ballet Adulto Intermediário",
                   "Ballet 60+ (Silver Swans)"
                 ].map((item, i) => (
-                  <motion.li 
+                  <motion.li
                     key={i}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -240,18 +255,18 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            
+
             <div className="bg-muted aspect-[4/5] rounded-2xl relative overflow-hidden group shadow-xl">
-               <img 
-                 src="https://images.unsplash.com/photo-1516570161877-cd047466eb32?q=80&w=2070&auto=format&fit=crop" 
-                 alt="Sapatilhas de ballet" 
-                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
-               <div className="absolute bottom-6 left-6 text-white">
-                 <p className="font-serif text-2xl italic">"A dança é a linguagem escondida da alma."</p>
-                 <p className="text-sm mt-2 opacity-80">— Martha Graham</p>
-               </div>
+              <img
+                src="/nossa_bailarina.jpeg"
+                alt="Sapatilhas de ballet"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <p className="font-serif text-2xl italic">"A dança é a linguagem escondida da alma."</p>
+                <p className="text-sm mt-2 opacity-80">— Martha Graham</p>
+              </div>
             </div>
           </div>
         </div>
@@ -261,7 +276,7 @@ export default function Home() {
       <section className="py-24 bg-secondary/30">
         <div className="container mx-auto max-w-4xl px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-serif text-foreground mb-12">Onde nos encontrar?</h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8 text-left">
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-pink-50 hover:shadow-md transition-shadow">
               <div className="flex items-start gap-4 mb-4">
@@ -298,7 +313,7 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="container mx-auto max-w-2xl px-4">
           <h2 className="text-3xl md:text-4xl font-serif text-center mb-12">Dúvidas Frequentes</h2>
-          
+
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="font-serif text-lg">Nunca fiz ballet, posso começar?</AccordionTrigger>
@@ -329,9 +344,9 @@ export default function Home() {
           <p className="text-xl opacity-90">
             Dê o primeiro passo para realizar seu sonho de dançar ballet.
           </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
+          <Button
+            size="lg"
+            variant="secondary"
             className="rounded-full text-lg h-16 px-10 text-primary hover:text-primary font-semibold shadow-xl"
             asChild
           >
@@ -339,7 +354,7 @@ export default function Home() {
               Falar com a Professora Ana
             </a>
           </Button>
-          
+
           <div className="pt-12 mt-12 border-t border-white/20 text-sm opacity-70">
             <p>&copy; {new Date().getFullYear()} Ballet Ana Mucelin. Todos os direitos reservados.</p>
           </div>
