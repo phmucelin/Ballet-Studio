@@ -31,7 +31,7 @@ export default function Home() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }, // Custom cubic bezier for smooth "out" ease
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }, // Custom cubic bezier for smooth "out" ease
     },
   };
 
