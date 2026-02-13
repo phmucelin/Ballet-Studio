@@ -89,9 +89,7 @@ export default function Home() {
               className="space-y-8 text-center md:text-left"
             >
               <motion.div variants={itemVariants}>
-                <span className="inline-block py-1 px-3 rounded-full bg-pink-50 text-pink-600 text-sm font-medium tracking-wider mb-4 border border-pink-100">
-                  O BALLET DO SEU JEITO
-                </span>
+
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif text-foreground leading-[1.1]">
                   Descubra a <span className="text-primary italic">leveza</span> de dançar.
                 </h1>
@@ -109,9 +107,9 @@ export default function Home() {
                     Começar Agora
                   </a>
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
+                <Button
+                  variant="outline"
+                  size="lg"
                   className="rounded-full text-lg h-14 px-8 border-pink-200 text-pink-700 hover:bg-pink-50 hover:text-pink-800"
                   onClick={() => {
                     const element = document.getElementById('modalidades');
